@@ -61,12 +61,6 @@ window.addEventListener('keydown', (event) => {
 	}
 });
 
-let lastTap = 0;
-canvas.addEventListener('touchend', (event) => {
-	let currentTime = new Date().getTime();
-	let tapLength = currentTime - lastTap;
-	if (tapLength < 300 && tapLength > 0) { 
-		download();
-	}
-	lastTap = currentTime;
+canvas.addEventListener('touchstart', () => {
+	downloadImage();
 });
