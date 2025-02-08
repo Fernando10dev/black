@@ -45,8 +45,8 @@ function points(color,totalnum){
 	
 	}
 }
-points("black",800000)
-points("black",500000)
+//points("black",800000)
+//points("black",500000)
 
 function downloadImage() {
 	const imageURL = canvas.toDataURL('image/png');
@@ -61,6 +61,12 @@ window.addEventListener('keydown', (event) => {
 	}
 });
 
-canvas.addEventListener('touchstart', () => {
-	downloadImage();
+let lastTap = 0;
+canvas.addEventListener('touchend', (event) => {
+	let currentTime = new Date().getTime();
+	let tapLength = currentTime - lastTap;
+	if (tapLength < 300 && tapLength > 0) { 
+		download();
+	}
+	lastTap = currentTime;
 });
